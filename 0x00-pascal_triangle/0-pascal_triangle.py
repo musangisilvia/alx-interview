@@ -23,8 +23,8 @@ def pascal_triangle(n):
         for i in range(n):
             for j in range(i+1):
                 # nCr = n!/((n-r)!*r!)
-                small_list.append(factorial_(i)//(factorial_(j)
-                                  * factorial_(i-j)))
+                small_list.append(factorial_(i)//(factorial_(j) *
+                                  factorial_(i-j)))
 
             list_lists.append(small_list)
             small_list = []
