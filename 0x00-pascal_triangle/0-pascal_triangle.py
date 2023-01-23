@@ -9,6 +9,11 @@
 from math import factorial
 
 def pascal_triangle(n):
+    """
+        Function to return list of lists
+        parameter: n (nth number)
+        return: empty list if n <= 0 or list of lists
+    """
     list_lists = []
     small_list = []
     if n <= 0:
