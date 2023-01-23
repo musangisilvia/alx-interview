@@ -7,7 +7,6 @@
         assumes n will be always an integer
 
 """
-from math import factorial
 
 
 def pascal_triangle(n):
@@ -24,9 +23,23 @@ def pascal_triangle(n):
         for i in range(n):
             for j in range(i+1):
                 # nCr = n!/((n-r)!*r!)
-                small_list.append(factorial(i)//(factorial(j)*factorial(i-j)))
+                small_list.append(factorial_(i)//(factorial_(j)
+                                  * factorial_(i-j)))
 
             list_lists.append(small_list)
             small_list = []
 
         return list_lists
+
+
+def factorial_(n):
+    """
+        Function to find factorial
+        parameter: n
+        return: factorial of a number
+    """
+    factorial = 1
+    for i in range(1, n + 1):
+        factorial = factorial * i
+
+    return factorial
