@@ -11,7 +11,7 @@ def pascal_triangle(n):
     list_lists = []
     small_list = []
     if n <= 0:
-        return []
+        return list_lists
     else:
         for i in range(n):
             for j in range(i+1):
