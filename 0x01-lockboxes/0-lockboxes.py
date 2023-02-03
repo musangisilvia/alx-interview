@@ -14,15 +14,14 @@ def canUnlockAll(boxes):
         Check readme for details of what this function does
     """
     unlocked = [0]
-
     for box in boxes:
         if len(box) == 0:
             continue
+        box.sort()
         for key in box:
             if key != boxes.index(box) and key < len(boxes) \
                     and key not in unlocked:
                 unlocked.append(key)
-
     if len(unlocked) == len(boxes):
         return True
 
