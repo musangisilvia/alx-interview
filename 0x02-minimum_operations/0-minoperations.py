@@ -8,26 +8,35 @@
 def minOperations(n):
     """
             Function: minOperations
-            returns the number of operations performed to reach n 
+            returns the number of operations performed to reach n
             characters
             params: n
             return: 0 if n is impossible
     """
-    # min operations done = 2
-    copy_a = 1
-    paste = 1
 
-    min_ops = n
+    # Logic: using prime factors find the minimum number
+    # of operations
 
-    all_ops = 0
+    # function to find smallest prime factor for n
+    def smallestPrimeFactor(n):
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return i
+        return n
 
-    man_operations = copy_a + paste
+    minimumoperations = 0
+    while n > 1:
+        smallest_prime = smallestPrimeFactor(n)
 
-    for i in (man_operations, n):
-        all_ops = n - copy_a - paste
-        if (all_ops + (all_ops * paste)) > min_ops:
-            min_ops = all_ops + (all_ops * paste)
-        
-        paste = paste + 1
+        if smallest_prime == n:
+            return minimumoperations + smallest_prime
 
-    return min_ops
+        # count number of times smallest prime is in n
+        count = 0
+        while n % smallest_prime == 0:
+            n //= smallest_prime
+            count += 1
+
+        minimumoperations += smallest_prime * count
+
+    return minimumoperations
