@@ -7,7 +7,11 @@ import sys
 import re
 
 # Define the regex pattern with named capture groups
-regex_pattern = r'^(?P<ip_address>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) \- \[(?P<date>\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] \"(?P<request>GET \/projects\/\d+ HTTP\/1\.1)\" (?P<status_code>\d+) (?P<file_size>\d+)$'
+regex_pattern = r'^(?P<ip_address>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) \- ' \
+               r'\[(?P<date>\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] ' \
+               r'\"(?P<request>GET \/projects\/\d+ HTTP\/1\.1)\" ' \
+               r'(?P<status_code>\d+) (?P<file_size>\d+)$'
+
 total_size = 0
 status_code_counts = {}
 i = 0
@@ -40,16 +44,26 @@ try:
         if i % 10 == 0:
             print('File size: {}'.format(total_size))
             # Sort the status code counts dictionary by key in ascending order
-            sorted_status_codes = sorted(status_code_counts.items(), key=lambda x: int(x[0]))
+            sorted_status_codes = sorted(status_code_counts.items(),
+                                         key=lambda x: int(x[0]))
             for code, count in sorted_status_codes:
                 print('{}: {}'.format(code, count))
 
 except KeyboardInterrupt:
     # Print the final file size and status code counts before exiting
     print('File size: {}'.format(total_size))
-    # Sort the status code counts dictionary by key in ascending order
-    sorted_status_codes = sorted(status_code_counts.items(), key=lambda x: int(x[0]))
+    # Sort the status code counts dictionary
+    # by key in ascending order
+    sorted_status_codes = sorted(status_code_counts.items(),
+                                 key=lambda x: int(x[0]))
     for code, count in sorted_status_codes:
         print('{}: {}'.format(code, count))
     sys.exit(0)
 
+# Print the final file size and status code counts
+print('File size: {}'.format(total_size))
+# Sort the status code counts dictionary by key in ascending order
+sorted_status_codes = sorted(status_code_counts.items(),
+                             key=lambda x: int(x[0]))
+for code, count in sorted_status_codes:
+    print('{}: {}'.format(code, count))
