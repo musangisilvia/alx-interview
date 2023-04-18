@@ -2,6 +2,7 @@
 
 """
     Module: 0-stats
+    Program to read log files
 """
 import sys
 import re
