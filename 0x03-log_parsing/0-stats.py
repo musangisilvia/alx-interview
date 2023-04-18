@@ -7,11 +7,6 @@
 """
 import sys
 import re
-import os
-import stat
-# to make file executable
-st = os.stat('0-stats.py')
-os.chmod('0-stats.py', st.st_mode | stat.S_IEXEC)
 
 # Define the regex pattern with named capture groups
 regex_pattern = r'^(?P<ip_address>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) \- ' \
