@@ -28,7 +28,7 @@ def makeChange(coins, total):
                     coin_count += 1
 
                 coins.remove(greatest)
-            else:
+            elif any(total<x for x in coins):
                 return -1
 
         return coin_count
